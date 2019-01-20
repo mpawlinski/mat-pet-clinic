@@ -1,4 +1,4 @@
-package matpetclinic;
+package pawlinski.matpetclinic;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
