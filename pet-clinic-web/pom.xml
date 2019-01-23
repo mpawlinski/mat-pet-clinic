@@ -14,7 +14,7 @@
         <dependency>
             <artifactId>pet-clinic-data</artifactId>
             <groupId>pawlinski</groupId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>0.0.2-SNAPSHOT</version>
         </dependency>
 
         <dependency>

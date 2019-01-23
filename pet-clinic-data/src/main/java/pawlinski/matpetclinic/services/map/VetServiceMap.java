@@ -1,11 +1,11 @@
 package pawlinski.matpetclinic.services.map;
 
 import pawlinski.matpetclinic.model.Vet;
-import pawlinski.matpetclinic.services.CrudService;
+import pawlinski.matpetclinic.services.VetService;
 
 import java.util.Set;
 
-public class VetServiceMap extends AbstractMapService<Vet, Long> implements CrudService<Vet, Long> {
+public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
 
     @Override
     public Set<Vet> findAll() {
