@@ -22,14 +22,12 @@ public class DataLoader implements CommandLineRunner { // Spring Boot specific w
     public void run(String... args) throws Exception {
 
         Owner owner1 = new Owner();
-        owner1.setId(1L);
         owner1.setFirstName("Hank");
         owner1.setLastName("Moody");
 
         ownerService.save(owner1);
 
         Owner owner2 = new Owner();
-        owner2.setId(2L);
         owner2.setFirstName("Charlie");
         owner2.setLastName("Harper");
 
@@ -38,14 +36,12 @@ public class DataLoader implements CommandLineRunner { // Spring Boot specific w
         System.out.println("Loaded Owners...");
 
         Vet vet1 = new Vet();
-        vet1.setId(1L);
         vet1.setFirstName("Anthony");
         vet1.setLastName("Kiedis");
 
         vetService.save(vet1);
 
         Vet vet2 = new Vet();
-        vet2.setId(2L);
         vet2.setFirstName("John");
         vet2.setLastName("Frusciante");
 
