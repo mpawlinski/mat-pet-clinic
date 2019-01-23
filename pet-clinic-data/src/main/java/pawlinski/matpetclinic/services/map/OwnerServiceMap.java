@@ -1,10 +1,12 @@
 package pawlinski.matpetclinic.services.map;
 
+import org.springframework.stereotype.Service;
 import pawlinski.matpetclinic.model.Owner;
 import pawlinski.matpetclinic.services.OwnerService;
 
 import java.util.Set;
 
+@Service
 public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService {
 
     @Override

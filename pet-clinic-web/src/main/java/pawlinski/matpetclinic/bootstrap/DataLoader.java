@@ -6,8 +6,6 @@ import pawlinski.matpetclinic.model.Owner;
 import pawlinski.matpetclinic.model.Vet;
 import pawlinski.matpetclinic.services.OwnerService;
 import pawlinski.matpetclinic.services.VetService;
-import pawlinski.matpetclinic.services.map.OwnerServiceMap;
-import pawlinski.matpetclinic.services.map.VetServiceMap;
 
 @Component
 public class DataLoader implements CommandLineRunner { // Spring Boot specific way to initialize data
@@ -15,9 +13,9 @@ public class DataLoader implements CommandLineRunner { // Spring Boot specific w
     private final OwnerService ownerService;
     private final VetService vetService;
 
-    public DataLoader() {
-        this.ownerService = new OwnerServiceMap();
-        this.vetService = new VetServiceMap();
+    public DataLoader(OwnerService ownerService, VetService vetService) {
+        this.ownerService = ownerService;
+        this.vetService = vetService;
     }
 
     @Override
