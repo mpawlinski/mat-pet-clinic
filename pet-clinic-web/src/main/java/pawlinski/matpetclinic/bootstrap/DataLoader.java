@@ -3,11 +3,14 @@ package pawlinski.matpetclinic.bootstrap;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import pawlinski.matpetclinic.model.Owner;
+import pawlinski.matpetclinic.model.Pet;
 import pawlinski.matpetclinic.model.PetType;
 import pawlinski.matpetclinic.model.Vet;
 import pawlinski.matpetclinic.services.OwnerService;
 import pawlinski.matpetclinic.services.PetTypeService;
 import pawlinski.matpetclinic.services.VetService;
+
+import java.time.LocalDate;
 
 @Component
 public class DataLoader implements CommandLineRunner { // Spring Boot specific way to initialize data
@@ -36,12 +39,32 @@ public class DataLoader implements CommandLineRunner { // Spring Boot specific w
         Owner owner1 = new Owner();
         owner1.setFirstName("Hank");
         owner1.setLastName("Moody");
+        owner1.setAddress("2243 Venice Beach");
+        owner1.setCity("Los Angeles");
+        owner1.setTelephone("999777333");
+
+        Pet hanksPet = new Pet();
+        hanksPet.setPetType(savedDogPetType);
+        hanksPet.setOwner(owner1);
+        hanksPet.setBirthDate(LocalDate.now());
+        hanksPet.setName("Yusuf");
+        owner1.getPets().add(hanksPet);
 
         ownerService.save(owner1);
 
         Owner owner2 = new Owner();
         owner2.setFirstName("Charlie");
         owner2.setLastName("Harper");
+        owner2.setAddress("24 Long Beach");
+        owner2.setCity("Los Angeles");
+        owner2.setTelephone("123456789");
+
+        Pet charliesPet = new Pet();
+        charliesPet.setPetType(savedCatPetType);
+        charliesPet.setOwner(owner2);
+        charliesPet.setBirthDate(LocalDate.now());
+        charliesPet.setName("Teshimitsu");
+        owner2.getPets().add(charliesPet);
 
         ownerService.save(owner2);
 
