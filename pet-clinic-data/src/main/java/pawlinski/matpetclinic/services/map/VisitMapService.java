@@ -1,10 +1,12 @@
 package pawlinski.matpetclinic.services.map;
 
+import org.springframework.stereotype.Service;
 import pawlinski.matpetclinic.model.Visit;
 import pawlinski.matpetclinic.services.VisitService;
 
 import java.util.Set;
 
+@Service
 public class VisitMapService extends AbstractMapService<Visit, Long> implements VisitService {
 
     @Override
