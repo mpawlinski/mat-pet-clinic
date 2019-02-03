@@ -3,10 +3,7 @@ package pawlinski.matpetclinic.bootstrap;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import pawlinski.matpetclinic.model.*;
-import pawlinski.matpetclinic.services.OwnerService;
-import pawlinski.matpetclinic.services.PetTypeService;
-import pawlinski.matpetclinic.services.SpecialtyService;
-import pawlinski.matpetclinic.services.VetService;
+import pawlinski.matpetclinic.services.*;
 
 import java.time.LocalDate;
 
@@ -17,12 +14,14 @@ public class DataLoader implements CommandLineRunner { // Spring Boot specific w
     private final VetService vetService;
     private final PetTypeService petTypeService;
     private final SpecialtyService specialtyService;
+    private final VisitService visitService;
 
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialtyService specialtyService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialtyService specialtyService, VisitService visitService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialtyService = specialtyService;
+        this.visitService = visitService;
     }
 
     @Override
@@ -87,6 +86,14 @@ public class DataLoader implements CommandLineRunner { // Spring Boot specific w
         owner2.getPets().add(charliesPet);
 
         ownerService.save(owner2);
+
+        // adding visit
+        Visit charliesPetVisit = new Visit();
+        charliesPetVisit.setPet(charliesPet);
+        charliesPetVisit.setDate(LocalDate.now());
+        charliesPetVisit.setDescription("vaccination");
+
+        visitService.save(charliesPetVisit);
 
         System.out.println("Loaded Owners...");
 
