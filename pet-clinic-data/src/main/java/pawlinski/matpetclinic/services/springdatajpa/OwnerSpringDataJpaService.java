@@ -4,6 +4,8 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import pawlinski.matpetclinic.model.Owner;
 import pawlinski.matpetclinic.repositories.OwnerRepository;
+import pawlinski.matpetclinic.repositories.PetRepository;
+import pawlinski.matpetclinic.repositories.PetTypeRepository;
 import pawlinski.matpetclinic.services.OwnerService;
 
 import java.util.HashSet;
@@ -15,9 +17,14 @@ import java.util.Set;
 public class OwnerSpringDataJpaService implements OwnerService {
 
     private final OwnerRepository ownerRepository;
+    private final PetRepository petRepository;
+    private final PetTypeRepository petTypeRepository;
 
-    public OwnerSpringDataJpaService(OwnerRepository ownerRepository) {
+    public OwnerSpringDataJpaService(OwnerRepository ownerRepository, PetRepository petRepository,
+                                     PetTypeRepository petTypeRepository) {
         this.ownerRepository = ownerRepository;
+        this.petRepository = petRepository;
+        this.petTypeRepository = petTypeRepository;
     }
 
     @Override
