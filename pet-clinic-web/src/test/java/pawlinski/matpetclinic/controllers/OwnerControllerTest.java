@@ -14,7 +14,8 @@ import pawlinski.matpetclinic.services.OwnerService;
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.*;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.verifyZeroInteractions;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -35,6 +36,7 @@ class OwnerControllerTest {
 
     @BeforeEach
     void setUp() {
+
         owners = new HashSet<>();
         Owner owner1 = new Owner();
         owner1.setId(1L);
@@ -52,7 +54,8 @@ class OwnerControllerTest {
         mockMvc.perform(get("/owners"))
                 .andExpect(status().is(200))
                 .andExpect(view().name("owners/index"))
-                .andExpect(model().attribute("owners", hasSize(2)));
+                .andExpect(model().attribute("owners", hasSize(2)))
+                .andExpect(model().attributeExists("owners"));
     }
 
     @Test
@@ -70,5 +73,19 @@ class OwnerControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("notimplemented"));
         verifyZeroInteractions(ownerService);
+    }
+
+    @Test
+    void displayOwnerDetails() throws Exception {
+        Owner owner = new Owner();
+        owner.setId(1L);
+
+        when(ownerService.findById(anyLong())).thenReturn(owner);
+
+        mockMvc.perform(get("/owners/5"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("owners/ownerDetails"))
+                .andExpect(model().attributeExists("owner"))
+                .andExpect(model().attribute("owner", hasProperty("id", is(1L))));
     }
 }
