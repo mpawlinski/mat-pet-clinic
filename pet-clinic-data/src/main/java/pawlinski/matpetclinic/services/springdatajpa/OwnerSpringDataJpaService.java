@@ -9,6 +9,7 @@ import pawlinski.matpetclinic.repositories.PetTypeRepository;
 import pawlinski.matpetclinic.services.OwnerService;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -30,6 +31,11 @@ public class OwnerSpringDataJpaService implements OwnerService {
     @Override
     public Owner findByLastName(String lastName) {
         return ownerRepository.findByLastName(lastName);
+    }
+
+    @Override
+    public List<Owner> findByLastNameLike(String lastName) {
+        return ownerRepository.findByLastNameLike(lastName);
     }
 
     @Override
@@ -64,4 +70,6 @@ public class OwnerSpringDataJpaService implements OwnerService {
     public void deleteById(Long aLong) {
         ownerRepository.deleteById(aLong);
     }
+
+
 }
