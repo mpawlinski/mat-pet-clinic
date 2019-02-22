@@ -1,6 +1,7 @@
 package pawlinski.matpetclinic.model;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +18,7 @@ import java.time.LocalDate;
 public class Visit extends BaseEntity {
 
     @Column(name = "date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
 
     @Column(name = "description")
