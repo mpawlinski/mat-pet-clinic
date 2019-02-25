@@ -11,9 +11,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import pawlinski.matpetclinic.model.Owner;
 import pawlinski.matpetclinic.services.OwnerService;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import static org.hamcrest.Matchers.*;
 import static org.mockito.ArgumentMatchers.anyLong;
@@ -153,4 +151,23 @@ class OwnerControllerTest {
                 .andExpect(view().name("redirect:/owners/1"));
     }
 
+    @Test
+    void returnAllbyEmptyLastName() throws Exception {
+        Owner owner1 = new Owner();
+        owner1.setId(1L);
+        Owner owner2 = new Owner();
+        owner1.setId(2L);
+
+        List<Owner> owners = new ArrayList<>();
+        owners.add(owner1);
+        owners.add(owner2);
+
+        when(ownerService.findByLastNameLike(anyString())).thenReturn(owners);
+
+        mockMvc.perform(get("/owners")
+            .param("lastName", ""))
+                .andExpect(status().isOk())
+                .andExpect(view().name("owners/ownersList"))
+                .andExpect(model().attributeExists("owners"));
+    }
 }
